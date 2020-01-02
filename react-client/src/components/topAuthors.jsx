@@ -23,6 +23,14 @@ class TopAuthors extends React.Component{
   }
 
   render(){
+      var sorted = JSON.parse(JSON.stringify(this.state.data))
+      for (let i = 0; i < sorted.length; i++) {
+        for (let j = 0; j < sorted.length; j++) {
+            if(sorted[i].by.karma < sorted[j].by.karma)
+            [sorted[i] , sorted[j]] =[sorted[j] , sorted[i]]
+        }          
+      }
+
     return (
     
     <div>
@@ -35,7 +43,7 @@ class TopAuthors extends React.Component{
       </tr>
     </thead>
     <tbody>
-      {this.state.data.map(one => {
+      {sorted.map(one => {
         return  (<tr>
         <td>{one.by.id}</td>
         <td>{one.by.karma}</td>

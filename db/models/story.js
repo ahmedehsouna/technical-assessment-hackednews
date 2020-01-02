@@ -17,7 +17,7 @@ var StoryModel = mongoose.model('Story', storySchema);
 
 // findAll retrieves all stories
 function findAll(callback) {
-  StoryModel.find({}).limit(10).exec(callback);
+  StoryModel.find({}).limit(10).sort({_id : 1}).exec(callback);
 }
 
 // findOne will retrieve the story associated with the given id
