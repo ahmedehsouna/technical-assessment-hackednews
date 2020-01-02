@@ -1,6 +1,6 @@
 import React from 'react';
 function getStories(callback){
-fetch('/api/story').then(res =>{
+fetch('/api/stories').then(res =>{
   res.json().then(data => {
     callback(data)
   })
@@ -37,9 +37,9 @@ class TopTen extends React.Component{
     </thead>
     <tbody>
       {this.state.data.map(one => {
-        return  (<tr>
+        return  (<tr key={one._id}>
         <td>{one.title}</td>
-        <td>{one.by.id}</td>
+        <td>{one.by}</td>
         <td>{one.score}</td>
       </tr>)})}
     </tbody>

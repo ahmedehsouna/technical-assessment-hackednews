@@ -2,13 +2,7 @@ var mongoose = require('mongoose');
 
 var storySchema = mongoose.Schema({
   id: Number,
-  by: {
-    about: String,
-    created: Number,
-    id: String,
-    karma: Number,
-    submitted: [Number]
-  },
+  by: String,
   title: String,
   score: Number
 });
@@ -33,4 +27,5 @@ function insertOne(story, callback) {
 exports.findOne = findOne;
 exports.findAll = findAll;
 exports.insertOne = insertOne;
+exports.StoryModel = StoryModel
 

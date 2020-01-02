@@ -1,6 +1,6 @@
 import React from 'react';
 function getStories(callback){
-fetch('/api/story').then(res =>{
+fetch('/api/authors').then(res =>{
   res.json().then(data => {
     callback(data)
   })
@@ -23,14 +23,6 @@ class TopAuthors extends React.Component{
   }
 
   render(){
-      var sorted = JSON.parse(JSON.stringify(this.state.data))
-      for (let i = 0; i < sorted.length; i++) {
-        for (let j = 0; j < sorted.length; j++) {
-            if(sorted[i].by.karma < sorted[j].by.karma)
-            [sorted[i] , sorted[j]] =[sorted[j] , sorted[i]]
-        }          
-      }
-
     return (
     
     <div>
@@ -43,11 +35,11 @@ class TopAuthors extends React.Component{
       </tr>
     </thead>
     <tbody>
-      {sorted.map(one => {
-        return  (<tr>
-        <td>{one.by.id}</td>
-        <td>{one.by.karma}</td>
-        <td>{one.by.about}</td>
+      {this.state.data.map(one => {
+        return  (<tr key={one._id}>
+        <td>{one.id}</td>
+        <td>{one.karma}</td>
+        <td>{one.about}</td>
       </tr>)})}
     </tbody>
   </table>

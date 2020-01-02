@@ -4,7 +4,7 @@ module.exports = mongoose.model("author" , mongoose.Schema({
     
         about: String,
         created: Number,
-        name: String,
+        id: String,
         karma: Number,
         submitted: [Number]
       
