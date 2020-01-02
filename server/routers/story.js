@@ -11,14 +11,8 @@ router.route('/')
     Stories.findAll((err,stories)=>{
       if (err) res.json({success:false, err})
       else{
-        // because Im not using the model directly and I have to use ur functions dunno why
-        // I have to filter by maself cuz I cant use limit here :\
-        var top = []
-        for (let i = 0; i < 10; i++) {
-          top.push(stories[i])
           
-        }   
-         res.json(top)
+         res.json(stories)
       } 
     })
     //  res.json([

@@ -1,11 +1,14 @@
 var mongoose = require('mongoose');
 
 var storySchema = mongoose.Schema({
-  id: {
-    type: Number,
-    unique: true
+  id: Number,
+  by: {
+    about: String,
+    created: Number,
+    id: String,
+    karma: Number,
+    submitted: [Number]
   },
-  by: String,
   title: String,
   score: Number
 });
@@ -14,7 +17,7 @@ var StoryModel = mongoose.model('Story', storySchema);
 
 // findAll retrieves all stories
 function findAll(callback) {
-  StoryModel.find({}, callback);
+  StoryModel.find({}).limit(10).exec(callback);
 }
 
 // findOne will retrieve the story associated with the given id

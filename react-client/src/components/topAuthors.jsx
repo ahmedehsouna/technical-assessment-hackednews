@@ -9,7 +9,7 @@ fetch('/api/story').then(res =>{
 // Build out the view for the top ten HackerNews stories here. 
 // Each story should have a title, author, and score. 
 // You may wish to refactor the existing component structure - that's fine.
-class TopTen extends React.Component{
+class TopAuthors extends React.Component{
   constructor(){
     super()
     this.state = {
@@ -23,24 +23,23 @@ class TopTen extends React.Component{
   }
 
   render(){
- 
     return (
     
     <div>
   <table>
     <thead>
       <tr>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Score</th>
+        <th>Name</th>
+        <th>Karma</th>
+        <th>About</th>
       </tr>
     </thead>
     <tbody>
       {this.state.data.map(one => {
         return  (<tr>
-        <td>{one.title}</td>
         <td>{one.by.id}</td>
-        <td>{one.score}</td>
+        <td>{one.by.karma}</td>
+        <td>{one.by.about}</td>
       </tr>)})}
     </tbody>
   </table>
@@ -49,4 +48,4 @@ class TopTen extends React.Component{
   }
 }
 
-export default TopTen;
+export default TopAuthors;
