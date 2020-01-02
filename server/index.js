@@ -2,12 +2,11 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var storyRouter = require('./routers/story.js');
 var mongoose = require('mongoose');
-
 var app = express();
-
 mongoose.connect('mongodb://localhost/hackednews');
 
 app.use(bodyParser.json());
+app.use(express.static(__dirname + "/../react-client/dist"))
 
 // UNCOMMENT FOR REACT
 // app.use(express.static(__dirname + '/../react-client/dist'));

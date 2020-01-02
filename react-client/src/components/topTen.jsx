@@ -1,10 +1,32 @@
 import React from 'react';
-
+function getStories(callback){
+fetch('/api/story').then(res =>{
+  res.json().then(data => {
+    callback(data)
+  })
+})
+}
 // Build out the view for the top ten HackerNews stories here. 
 // Each story should have a title, author, and score. 
 // You may wish to refactor the existing component structure - that's fine.
-const TopTen = () => (
-  <div>
+class TopTen extends React.Component{
+  constructor(){
+    super()
+    this.state = {
+      data : []
+    }
+  }
+  componentDidMount(){
+    getStories(data => {
+      this.setState({data})
+    })
+  }
+
+  render(){
+ 
+    return (
+    
+    <div>
   <h1> Top Ten Stories </h1>
   <table>
     <thead>
@@ -15,19 +37,17 @@ const TopTen = () => (
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Switch – New Video Game System [video]</td>
-        <td>ocdtrekkie</td>
-        <td>536</td>
-      </tr>
-      <tr>
-        <td>Video Games Are Changing the Way Soccer Is Played</td>
-        <td>mhb</td>
-        <td>100</td>
-      </tr>
+      {this.state.data.map(one => {
+        return  (<tr>
+        <td>{one.title}</td>
+        <td>{one.by}</td>
+        <td>{one.score}</td>
+      </tr>)})}
     </tbody>
   </table>
 </div>
-);
+)
+  }
+}
 
 export default TopTen;
